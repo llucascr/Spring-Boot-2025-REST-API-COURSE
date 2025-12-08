@@ -1,7 +1,7 @@
 package br.com.llucascr.services;
 
+import br.com.llucascr.data.dto.PersonDTO;
 import br.com.llucascr.exception.ResourceNotFoundException;
-import br.com.llucascr.mapper.ObjectMapper;
 import br.com.llucascr.model.Person;
 import br.com.llucascr.repository.PersonRepository;
 import org.slf4j.Logger;
@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
+
+import static br.com.llucascr.mapper.ObjectMapper.parseListObjects;
+import static br.com.llucascr.mapper.ObjectMapper.parseObject;
 
 /*
 * @Service = Cria um bean dessa classe e deixa disponivel na memoria*/
@@ -23,41 +26,48 @@ public class PersonServices {
     @Autowired
     private PersonRepository repository;
 
-    public Person create(Person person) {
-        logger.info("Creating one Person");
-        return repository.save(person);
+    public List<PersonDTO> findAll() {
+        logger.info("Fiding all People!");
+
+        return parseListObjects(repository.findAll(), PersonDTO.class);
     }
 
-    public Person update(Person person) {
-        logger.info("Updating one Person");
-        Person entity = repository.findById(person.getId())
+    public PersonDTO findById(Long id) {
+        logger.info("Finding one Person!");
+
+        Person person = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
 
-        entity.setFirstName(person.getFirstName() != null ? person.getFirstName() : entity.getFirstName());
-        entity.setLastName(person.getLastName() != null ? person.getLastName() : entity.getLastName());
-        entity.setAddress(person.getAddress() != null ? person.getAddress() : entity.getAddress());
-        entity.setGender(person.getGender() != null ? person.getGender() : entity.getGender());
-
-        return repository.save(entity);
+        return parseObject(person, PersonDTO.class);
     }
 
-    public List<Person> findAll() {
-        logger.info("Fiding all People!");
-        return repository.findAll();
+    public PersonDTO create(PersonDTO personDTO) {
+        logger.info("Creating one Person");
+
+        Person person = parseObject(personDTO, Person.class);
+        return parseObject(repository.save(person), PersonDTO.class);
     }
 
+    public PersonDTO update(PersonDTO personDTO) {
+        logger.info("Updating one Person");
+
+        Person entity = repository.findById(personDTO.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+
+        entity.setFirstName(personDTO.getFirstName() != null ? personDTO.getFirstName() : entity.getFirstName());
+        entity.setLastName(personDTO.getLastName() != null ? personDTO.getLastName() : entity.getLastName());
+        entity.setAddress(personDTO.getAddress() != null ? personDTO.getAddress() : entity.getAddress());
+        entity.setGender(personDTO.getGender() != null ? personDTO.getGender() : entity.getGender());
+
+        return parseObject(repository.save(entity), PersonDTO.class);
+    }
 
     public void delete(Long id) {
         logger.info("Deleting one Person!");
+
         Person entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
         repository.delete(entity);
-    }
-
-    public Person findById(Long id) {
-        logger.info("Finding one Person!");
-        return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
     }
 
 }
