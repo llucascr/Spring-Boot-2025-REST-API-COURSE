@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: rest-with-spring-boot-and-java
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring_boot_2025_rest?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+    show-sql: false
+    open-in-view: false
+
+logging:
+  level:
+    root: warn
+  # br.com.llucascr: INFO

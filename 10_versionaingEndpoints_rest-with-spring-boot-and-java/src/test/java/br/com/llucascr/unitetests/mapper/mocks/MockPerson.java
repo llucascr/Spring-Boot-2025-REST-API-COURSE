@@ -1,6 +1,6 @@
 package br.com.llucascr.unitetests.mapper.mocks;
 
-import br.com.llucascr.data.dto.PersonDTO;
+import br.com.llucascr.data.dto.v1.PersonDTO;
 import br.com.llucascr.model.Person;
 
 import java.util.ArrayList;

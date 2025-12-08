@@ -1,7 +1,9 @@
 package br.com.llucascr.services;
 
-import br.com.llucascr.data.dto.PersonDTO;
+import br.com.llucascr.data.dto.v1.PersonDTO;
+import br.com.llucascr.data.dto.v2.PersonDTOV2;
 import br.com.llucascr.exception.ResourceNotFoundException;
+import br.com.llucascr.mapper.custom.PersonMapper;
 import br.com.llucascr.model.Person;
 import br.com.llucascr.repository.PersonRepository;
 import org.slf4j.Logger;
@@ -26,6 +28,9 @@ public class PersonServices {
     @Autowired
     private PersonRepository repository;
 
+    @Autowired
+    private PersonMapper converter;
+
     public List<PersonDTO> findAll() {
         logger.info("Fiding all People!");
 
@@ -46,6 +51,14 @@ public class PersonServices {
 
         Person person = parseObject(personDTO, Person.class);
         return parseObject(repository.save(person), PersonDTO.class);
+    }
+
+    public PersonDTOV2 createV2(PersonDTOV2 dto) {
+        logger.info("Creating one PersonV2");
+
+        Person person = converter.convertDtoToEntity(dto);
+        repository.save(person);
+        return converter.convertEntityToDTO(person);
     }
 
     public PersonDTO update(PersonDTO personDTO) {
