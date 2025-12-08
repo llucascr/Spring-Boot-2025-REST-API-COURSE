@@ -16,4 +16,5 @@ spring:
 
 logging:
   level:
-    br.com.llucascr: INFO
+    root: warn
+  # br.com.llucascr: INFO
