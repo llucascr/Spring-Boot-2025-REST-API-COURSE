@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_spring_boot_2025_rest
+    environment:
+      MYSQL_DATABASE: spring_boot_2025_rest
+      MYSQL_ROOT_PASSWORD: root
+      # Opcional: criar um usuário específico além do root
+      MYSQL_USER: usuario_app
+      MYSQL_PASSWORD: senha_app
+    ports:
+      - "3306:3306"
+    restart: on-failure
+    # Opcional: Volume para persistir os dados se o container for deletado
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
