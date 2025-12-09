@@ -1,7 +1,6 @@
 package br.com.llucascr.controllers;
 
 import br.com.llucascr.data.dto.PersonDTO;
-import br.com.llucascr.data.dto.v2.PersonDTOV2;
 import br.com.llucascr.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/api/v1/person")
 public class PersonController {
 
     @Autowired

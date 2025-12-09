@@ -18,6 +18,18 @@
 	</properties>
 	<dependencies><!-- Aqui dentro adicionamos as novas dependencias -->
 
+		<!-- Flyway MySQL -->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-mysql</artifactId>
+		</dependency>
+
+		<!-- Flyway Core -->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+
 		<!-- DTO Dozer -->
 		<dependency>
 			<groupId>com.github.dozermapper</groupId>
