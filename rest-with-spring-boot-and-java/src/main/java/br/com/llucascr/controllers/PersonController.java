@@ -1,12 +1,14 @@
 package br.com.llucascr.controllers;
 
 import br.com.llucascr.data.dto.PersonDTO;
+import br.com.llucascr.model.Person;
 import br.com.llucascr.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -21,7 +23,10 @@ public class PersonController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public PersonDTO findById(@PathVariable("id") Long id) {
-        return services.findById(id);
+        // Mock
+        PersonDTO person = services.findById(id);
+        person.setBirthday(new Date());
+        return person;
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
