@@ -18,6 +18,12 @@
 	</properties>
 	<dependencies><!-- Aqui dentro adicionamos as novas dependencias -->
 
+		<!-- Content Negotiation -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
+
 		<!-- Flyway MySQL -->
 		<dependency>
 			<groupId>org.flywaydb</groupId>
