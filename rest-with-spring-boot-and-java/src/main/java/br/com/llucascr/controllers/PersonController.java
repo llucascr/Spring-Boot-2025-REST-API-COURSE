@@ -26,6 +26,10 @@ public class PersonController {
         // Mock
         PersonDTO person = services.findById(id);
         person.setBirthday(new Date());
+//        person.setPhoneNumber("+55 (34) 98765-4321");
+        person.setPhoneNumber("");
+        person.setLastName(null);
+        person.setSensitiveData("1313231313131");
         return person;
     }
 
