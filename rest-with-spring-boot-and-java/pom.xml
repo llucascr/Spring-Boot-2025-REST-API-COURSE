@@ -18,7 +18,13 @@
 	</properties>
 	<dependencies><!-- Aqui dentro adicionamos as novas dependencias -->
 
-		<!-- Content Negotiation -->
+		<!-- Content Negotiation YML -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-yaml</artifactId>
+		</dependency>
+
+		<!-- Content Negotiation XML -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
