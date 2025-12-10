@@ -1,6 +1,7 @@
 package br.com.llucascr.services;
 
 import br.com.llucascr.data.dto.PersonDTO;
+import br.com.llucascr.exception.RequiredObjectIsNullException;
 import br.com.llucascr.exception.ResourceNotFoundException;
 import br.com.llucascr.model.Person;
 import br.com.llucascr.repository.PersonRepository;
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 import static br.com.llucascr.mapper.ObjectMapper.parseListObjects;
 import static br.com.llucascr.mapper.ObjectMapper.parseObject;
@@ -20,7 +20,6 @@ import static br.com.llucascr.mapper.ObjectMapper.parseObject;
 @Service
 public class PersonServices {
 
-    private final AtomicLong counter = new AtomicLong();
     private Logger logger = LoggerFactory.getLogger(PersonServices.class);
 
     @Autowired
@@ -44,12 +43,16 @@ public class PersonServices {
     public PersonDTO create(PersonDTO personDTO) {
         logger.info("Creating one Person");
 
+        if (personDTO == null) throw new RequiredObjectIsNullException();
+
         Person person = parseObject(personDTO, Person.class);
         return parseObject(repository.save(person), PersonDTO.class);
     }
 
     public PersonDTO update(PersonDTO personDTO) {
         logger.info("Updating one Person");
+
+        if (personDTO == null) throw new RequiredObjectIsNullException();
 
         Person entity = repository.findById(personDTO.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
