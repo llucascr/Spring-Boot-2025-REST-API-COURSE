@@ -1,19 +1,20 @@
 package br.com.llucascr.controllers;
 
+import br.com.llucascr.controllers.docs.PersonControllerDocs;
 import br.com.llucascr.data.dto.PersonDTO;
-import br.com.llucascr.model.Person;
 import br.com.llucascr.services.PersonServices;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/person")
-public class PersonController {
+@Tag(name = "People", description = "Endpoints for Managing People")
+public class PersonController implements PersonControllerDocs {
 
     @Autowired
     private PersonServices services;
@@ -26,26 +27,28 @@ public class PersonController {
                     MediaType.APPLICATION_YAML_VALUE
             }
     )
+    @Override
     public PersonDTO findById(@PathVariable("id") Long id) {
         return services.findById(id);
     }
 
-    @GetMapping(produces =  {
+    @GetMapping(produces = {
             MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_YAML_VALUE
     })
+    @Override
     public List<PersonDTO> findAll() {
         return services.findAll();
     }
 
     @PostMapping(
-            consumes =  {
+            consumes = {
                     MediaType.APPLICATION_JSON_VALUE,
                     MediaType.APPLICATION_XML_VALUE,
                     MediaType.APPLICATION_YAML_VALUE
             },
-            produces =  {
+            produces = {
                     MediaType.APPLICATION_JSON_VALUE,
                     MediaType.APPLICATION_XML_VALUE,
                     MediaType.APPLICATION_YAML_VALUE
@@ -56,6 +59,7 @@ public class PersonController {
     }
 
     @DeleteMapping(value = "/delete/{id}")
+    @Override
     public ResponseEntity<?> delete(@PathVariable("id") Long id) {
         services.delete(id);
         return ResponseEntity.noContent().build();
@@ -69,17 +73,18 @@ public class PersonController {
      * */
     @RequestMapping(
             method = RequestMethod.PUT,
-            consumes =  {
+            consumes = {
                     MediaType.APPLICATION_JSON_VALUE,
                     MediaType.APPLICATION_XML_VALUE,
                     MediaType.APPLICATION_YAML_VALUE
             },
-            produces =  {
+            produces = {
                     MediaType.APPLICATION_JSON_VALUE,
                     MediaType.APPLICATION_XML_VALUE,
                     MediaType.APPLICATION_YAML_VALUE
             }
     )
+    @Override
     public PersonDTO update(@RequestBody PersonDTO person) {
         return services.update(person);
     }
