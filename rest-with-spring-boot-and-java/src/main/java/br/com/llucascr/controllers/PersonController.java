@@ -2,7 +2,7 @@ package br.com.llucascr.controllers;
 
 import br.com.llucascr.controllers.docs.PersonControllerDocs;
 import br.com.llucascr.data.dto.PersonDTO;
-import br.com.llucascr.services.PersonServices;
+import br.com.llucascr.unittests.services.PersonServices;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

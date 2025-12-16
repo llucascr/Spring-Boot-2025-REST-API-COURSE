@@ -1,4 +1,4 @@
-package br.com.llucascr.unitetests.mapper;
+package br.com.llucascr.unittests.mapper;
 import static br.com.llucascr.mapper.ObjectMapper.parseListObjects;
 import static br.com.llucascr.mapper.ObjectMapper.parseObject;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.llucascr.data.dto.PersonDTO;
 import br.com.llucascr.model.Person;
-import br.com.llucascr.unitetests.mapper.mocks.MockPerson;
+import br.com.llucascr.unittests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

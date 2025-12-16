@@ -1,4 +1,4 @@
-package br.com.llucascr.unitetests.mapper.mocks;
+package br.com.llucascr.unittests.mapper.mocks;
 
 import br.com.llucascr.data.dto.PersonDTO;
 import br.com.llucascr.model.Person;

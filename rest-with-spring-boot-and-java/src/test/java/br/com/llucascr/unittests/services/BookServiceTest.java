@@ -1,11 +1,9 @@
-package br.com.llucascr.services;
+package br.com.llucascr.unittests.services;
 
 import br.com.llucascr.data.dto.BooksDTO;
-import br.com.llucascr.data.dto.PersonDTO;
 import br.com.llucascr.model.Books;
-import br.com.llucascr.model.Person;
 import br.com.llucascr.repository.BookRepository;
-import br.com.llucascr.unitetests.mapper.mocks.MockBooks;
+import br.com.llucascr.unittests.mapper.mocks.MockBooks;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -17,8 +15,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

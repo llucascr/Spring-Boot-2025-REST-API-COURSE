@@ -1,10 +1,10 @@
-package br.com.llucascr.services;
+package br.com.llucascr.unittests.services;
 
 import br.com.llucascr.data.dto.PersonDTO;
 import br.com.llucascr.exception.RequiredObjectIsNullException;
 import br.com.llucascr.model.Person;
 import br.com.llucascr.repository.PersonRepository;
-import br.com.llucascr.unitetests.mapper.mocks.MockPerson;
+import br.com.llucascr.unittests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
