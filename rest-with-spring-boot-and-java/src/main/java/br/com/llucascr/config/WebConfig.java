@@ -1,14 +1,29 @@
 package br.com.llucascr.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-//    @Override
+    @Value("${cors.originPatterns:http://localhost:8080}")
+    private String corsOriginPatterns = "";
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        var allowedOrigins = corsOriginPatterns.split(",");
+        registry.addMapping("/**")
+                .allowedOrigins(allowedOrigins)
+//                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedMethods("*") // Permite todos os verbos http
+                .allowCredentials(true);
+    }
+
+    //    @Override
 //    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
 //        // Via QUERY PARAM http://localhost:8080/api/v1/person/11?mediaType=xml
 //        configurer.favorParameter(true)
