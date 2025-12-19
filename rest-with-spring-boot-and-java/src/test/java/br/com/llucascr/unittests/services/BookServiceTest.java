@@ -3,6 +3,7 @@ package br.com.llucascr.unittests.services;
 import br.com.llucascr.data.dto.BooksDTO;
 import br.com.llucascr.model.Books;
 import br.com.llucascr.repository.BookRepository;
+import br.com.llucascr.services.BookService;
 import br.com.llucascr.unittests.mapper.mocks.MockBooks;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

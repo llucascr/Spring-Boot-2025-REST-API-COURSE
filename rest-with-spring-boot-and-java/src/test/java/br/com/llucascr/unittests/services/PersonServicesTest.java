@@ -4,6 +4,7 @@ import br.com.llucascr.data.dto.PersonDTO;
 import br.com.llucascr.exception.RequiredObjectIsNullException;
 import br.com.llucascr.model.Person;
 import br.com.llucascr.repository.PersonRepository;
+import br.com.llucascr.services.PersonServices;
 import br.com.llucascr.unittests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

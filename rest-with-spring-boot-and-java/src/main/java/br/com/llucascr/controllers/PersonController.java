@@ -2,7 +2,7 @@ package br.com.llucascr.controllers;
 
 import br.com.llucascr.controllers.docs.PersonControllerDocs;
 import br.com.llucascr.data.dto.PersonDTO;
-import br.com.llucascr.unittests.services.PersonServices;
+import br.com.llucascr.services.PersonServices;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,7 +20,7 @@ public class PersonController implements PersonControllerDocs {
     @Autowired
     private PersonServices services;
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://teste.com.br"})
+    //@CrossOrigin(origins = {"http://localhost:8080", "https://teste.com.br"})
     @GetMapping(
             value = "/{id}",
             produces = {
