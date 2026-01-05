@@ -5,9 +5,13 @@ import br.com.llucascr.exception.RequiredObjectIsNullException;
 import br.com.llucascr.exception.ResourceNotFoundException;
 import br.com.llucascr.model.Person;
 import br.com.llucascr.repository.PersonRepository;
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,10 +29,20 @@ public class PersonServices {
     @Autowired
     private PersonRepository repository;
 
-    public List<PersonDTO> findAll() {
+    public Page<PersonDTO> findByName(String firstName, Pageable pageable) {
+        Page<Person> personPage = repository.findPeopleByName(firstName, pageable);
+
+        return personPage.map(person -> parseObject(person, PersonDTO.class));
+    }
+
+    public Page<PersonDTO> findAll(Pageable pageable) {
         logger.info("Fiding all People!");
 
-        return parseListObjects(repository.findAll(), PersonDTO.class);
+        var personPage = repository.findAll(pageable);
+
+        return personPage.map(person -> {
+            return parseObject(person, PersonDTO.class);
+        });
     }
 
     public PersonDTO findById(Long id) {
@@ -71,6 +85,19 @@ public class PersonServices {
         Person entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
         repository.delete(entity);
+    }
+
+    @Transactional
+    public PersonDTO disablePerson(Long id) {
+        logger.info("Disable one Person!");
+
+        repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+
+        repository.disablePerson(id);
+
+        Person person = repository.findById(id).get();
+        return parseObject(person, PersonDTO.class);
     }
 
 }

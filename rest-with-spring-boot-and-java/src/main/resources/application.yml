@@ -1,5 +1,7 @@
 cors:
   originPatterns: http://localhost:8080,http://localhost:3000,https://teste.com.br
+file:
+  upload-dir: /home/lucas/Desktop/Spring-Boot-2025-REST-API-COURSE/UploadDir
 spring:
   application:
     name: rest-with-spring-boot-and-java
@@ -13,9 +15,14 @@ spring:
       ddl-auto: none
     properties:
       hibernate:
-    show-sql: false
-    open-in-view: false
-
+        show-sql: false
+        open-in-view: false
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
 logging:
   level:
     root: info

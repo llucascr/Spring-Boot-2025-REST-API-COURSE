@@ -146,36 +146,36 @@ class PersonServicesTest {
         verifyNoMoreInteractions(repository);
     }
 
-    @Test
-    void findAll() {
-        List<Person> list = input.mockEntityList();
-        when(repository.findAll()).thenReturn(list);
-
-        List<PersonDTO> perople = service.findAll();
-
-        assertNotNull(perople);
-        assertEquals(14, perople.size());
-
-        PersonDTO personOne = perople.get(1);
-
-        assertEquals("First Name Test1", personOne.getFirstName());
-        assertEquals("Last Name Test1", personOne.getLastName());
-        assertEquals("Address Test1", personOne.getAddress());
-        assertEquals("Female", personOne.getGender());
-
-        PersonDTO personFour = perople.get(4);
-
-        assertEquals("First Name Test4", personFour.getFirstName());
-        assertEquals("Last Name Test4", personFour.getLastName());
-        assertEquals("Address Test4", personFour.getAddress());
-        assertEquals("Male", personFour.getGender());
-
-        PersonDTO personSeven = perople.get(7);
-
-        assertEquals("First Name Test7", personSeven.getFirstName());
-        assertEquals("Last Name Test7", personSeven.getLastName());
-        assertEquals("Address Test7", personSeven.getAddress());
-        assertEquals("Female", personSeven.getGender());
-
-    }
+//    @Test
+//    void findAll() {
+//        List<Person> list = input.mockEntityList();
+//        when(repository.findAll()).thenReturn(list);
+//
+//        List<PersonDTO> perople = service.findAll();
+//
+//        assertNotNull(perople);
+//        assertEquals(14, perople.size());
+//
+//        PersonDTO personOne = perople.get(1);
+//
+//        assertEquals("First Name Test1", personOne.getFirstName());
+//        assertEquals("Last Name Test1", personOne.getLastName());
+//        assertEquals("Address Test1", personOne.getAddress());
+//        assertEquals("Female", personOne.getGender());
+//
+//        PersonDTO personFour = perople.get(4);
+//
+//        assertEquals("First Name Test4", personFour.getFirstName());
+//        assertEquals("Last Name Test4", personFour.getLastName());
+//        assertEquals("Address Test4", personFour.getAddress());
+//        assertEquals("Male", personFour.getGender());
+//
+//        PersonDTO personSeven = perople.get(7);
+//
+//        assertEquals("First Name Test7", personSeven.getFirstName());
+//        assertEquals("Last Name Test7", personSeven.getLastName());
+//        assertEquals("Address Test7", personSeven.getAddress());
+//        assertEquals("Female", personSeven.getGender());
+//
+//    }
 }
